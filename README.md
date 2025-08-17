@@ -1,14 +1,4 @@
-## Cliquer ici pour le readme en français :
-<p align="center">
-  <a href="https://github.com/Hardel-DW/ModsThanos/blob/main/README.fr.md">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-338px-Flag_of_France.svg.png" />
-  </a>
-</p>
-
-[![Hardel](https://discord.com/assets/e4923594e694a21542a489471ecffa50.svg)](https://discord.gg/AP9axbXXNC)
-
-
-# Thanos Mod
+# Thanos Mod - R
 
 The Thanos Mod, it's among Us mod, adding a role and new features.  
 A random player, will be Thanos and will have to search for the 6 stones of infinity to unlock the finger snap, and finish the game.  
@@ -62,14 +52,6 @@ Download the zip file on the right side of Github.
 5. Play the game.  
 
 ![Install](https://i.imgur.com/pvBAyZN.png)
-
-## Serveur
-
-The Thanos Mod, being a mod that modifies a lot the behavior of the game, the official servers will not support the new features.  
-That's why a private server is necessary.  
-By default Thanos Mod, offers you the possibility to connect to the Cheeps-YT.com servers.  
-
-![Server](https://i.imgur.com/opzh2BQ.png)
 
 --------
 
@@ -146,7 +128,7 @@ Thank you, Cheeps for giving permission to use his private server.
 
 # Bugs/Feature suggestions
 If you need to contact me, to request additional features, or to make bug or change requests.  
-Go to this [Discord](https://discord.gg/AP9axbXXNC) server, or create a ticker on Github.
+Go to this [Discord](https://discord.gg/TUceswKfRg) server, or create a issue on Github.
 
 # Ressources
 https://github.com/NuclearPowered/Reactor Le Framework que le mod utilise.  
