@@ -27,7 +27,7 @@ namespace ModsThanos {
             component = new GameObject(this.GameObjectName);
             if (this.visibility) {
                 SpriteRenderer renderer = component.AddComponent<SpriteRenderer>();
-                renderer.sprite = Utility.HelperSprite.LoadSpriteFromEmbeddedResources(Ressource, CustomGameOptions.StoneSize.GetValue());
+                renderer.sprite = Utility.HelperSprite.LoadSpriteFromEmbeddedResources(Ressource, CustomGameOptions.StoneSize.Get());
             }
 
             GemBehaviour gemBehaviour = component.AddComponent<GemBehaviour>();
@@ -45,7 +45,7 @@ namespace ModsThanos {
             if (PlayerControl.LocalPlayer == null) return;
             if (PlayerControl.LocalPlayer.Data == null) return;
 
-            bool isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor;
+            bool isImpostor = PlayerControl.LocalPlayer.Data.Role.IsImpostor;
             switch (this.visible) {
                 case Visibility.Everyone: {
                     this.visibility = true;
@@ -79,7 +79,7 @@ namespace ModsThanos {
             GlobalVariable.stonePositon[this.GameObjectName] = new Vector2(position.x, position.y);
 
             if (this.GameObjectName == "Soul") {
-                GlobalVariable.arrow.GetComponent<DGPHMLNNPDN>().target = new Vector2(position.x, position.y);
+                GlobalVariable.arrow.GetComponent<ArrowBehaviour>().target = new Vector2(position.x, position.y);
             }
         }
     }

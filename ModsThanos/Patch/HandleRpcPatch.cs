@@ -1,167 +1,233 @@
 ﻿using HarmonyLib;
 using Hazel;
+using ModsThanos.CustomOption;
 using ModsThanos.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace ModsThanos.Patch {
+namespace ModsThanos.Patch
+{
 
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.HandleRpc))]
-    class HandleRpcPatch {
+    class HandleRpcPatch
+    {
 
-        public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader) {
-            if (callId == (byte) CustomRPC.SyncStone) {
-                string stoneName = reader.ReadString();
-                Vector2 vector = reader.ReadVector2();
+        public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
+        {
+            if (GameOptionsManager.Instance.currentGameMode == AmongUs.GameOptions.GameModes.HideNSeek) return;
 
-                if (!GlobalVariable.stoneObjects.ContainsKey(stoneName))
-                    GlobalVariable.stonePositon.Add(stoneName, vector);
-                else
-                    GlobalVariable.stoneObjects[stoneName].ModifyPosition(vector);
+            switch (callId)
+            {
+                case (byte)CustomRPC.SyncStone:
+                    HandleSyncStone(reader);
+                    break;
 
-                return false;
+                case (byte)CustomRPC.ReplaceStone:
+                    HandleReplaceStone(reader);
+                    break;
+
+                case (byte)CustomRPC.SetVisiorColor:
+                    HandleSetVisorColor(reader);
+                    break;
+
+                case (byte)CustomRPC.SetColorName:
+                    HandleSetNameColor(reader);
+                    break;
+
+                case (byte)CustomRPC.SetPlayerSoulStone:
+                    HandleSetPlayerSoulStone(reader);
+                    break;
+
+                case (byte)CustomRPC.RemovePlayerSoulStone:
+                    HandleRemovePlayerSoulStone();
+                    break;
+
+                case (byte)CustomRPC.SetThanos:
+                    HandleSetThanos(reader);
+                    break;
+
+                case (byte)CustomRPC.StonePickup:
+                    HandleStonePickup(reader);
+                    break;
+
+                case (byte)CustomRPC.MindChangedValue:
+                    HandleMindChangedValue(reader);
+                    break;
+
+                case (byte)CustomRPC.TimeRewind:
+                    HandleTimeRewind();
+                    break;
+
+                case (byte)CustomRPC.TimeRevive:
+                    HandleTimeRevive(reader);
+                    break;
+
+                case (byte)CustomRPC.PowerStone:
+                    HandlePowerStone(reader);
+                    break;
+
+                case (byte)CustomRPC.TurnInvisibility:
+                    HandleTurnInvisibility(reader, __instance);
+                    break;
+
+                case (byte)CustomRPC.Snap:
+                    HandleSnap();
+                    break;
+
+                case (byte)CustomRPC.SnapEnded:
+                    HandleSnapEnded(reader);
+                    break;
+
+                case (byte)CustomRPC.SyncCustomSettings:
+                    RpcUpdateSetting.ReceiveRpc(reader);
+                    break;
             }
+        }
 
-            if (callId == (byte) CustomRPC.ReplaceStone) {
-                string stoneName = reader.ReadString();
-                Vector2 vector = reader.ReadVector2();
+        private static void HandleSyncStone(MessageReader reader)
+        {
+            string stoneName = reader.ReadString();
+            Vector2 vector = reader.ReadVector2();
 
-                Stone.StoneDrop.ReplaceStone(stoneName, vector);
-                return false;
-            }
+            if (!GlobalVariable.stoneObjects.ContainsKey(stoneName))
+                GlobalVariable.stonePositon.Add(stoneName, vector);
+            else
+                GlobalVariable.stoneObjects[stoneName].ModifyPosition(vector);
+        }
 
-            if (callId == (byte) CustomRPC.SetVisiorColor) {
-                byte playerId = reader.ReadByte();
-                float colorR = reader.ReadSingle();
-                float colorG = reader.ReadSingle();
-                float colorB = reader.ReadSingle();
-                float colorA = reader.ReadSingle();
+        private static void HandleReplaceStone(MessageReader reader)
+        {
+            string stoneName = reader.ReadString();
+            Vector2 vector = reader.ReadVector2();
+            Stone.StoneDrop.ReplaceStone(stoneName, vector);
+        }
 
-                foreach (var player in PlayerControl.AllPlayerControls) {
-                    if (player.PlayerId == playerId) {
-                        player.myRend.material.SetColor("_VisorColor", new Color(colorR, colorG, colorB, colorA));
-                    }
+        private static void HandleSetVisorColor(MessageReader reader)
+        {
+            byte playerId = reader.ReadByte();
+            float colorR = reader.ReadSingle();
+            float colorG = reader.ReadSingle();
+            float colorB = reader.ReadSingle();
+            float colorA = reader.ReadSingle();
+
+            foreach (var player in PlayerControl.AllPlayerControls)
+            {
+                if (player.PlayerId == playerId)
+                {
+                    player.cosmetics.currentBodySprite.BodySprite.material.SetColor(
+                        "_VisorColor",
+                        new Color(colorR, colorG, colorB, colorA)
+                    );
                 }
-
-                return false;
             }
+        }
 
-            if (callId == (byte) CustomRPC.SetColorName) {
-                byte playerId = reader.ReadByte();
-                float colorR = reader.ReadSingle();
-                float colorG = reader.ReadSingle();
-                float colorB = reader.ReadSingle();
-                float colorA = reader.ReadSingle();
+        private static void HandleSetNameColor(MessageReader reader)
+        {
+            byte playerId = reader.ReadByte();
+            float colorR = reader.ReadSingle();
+            float colorG = reader.ReadSingle();
+            float colorB = reader.ReadSingle();
+            float colorA = reader.ReadSingle();
 
-                foreach (var player in PlayerControl.AllPlayerControls)
-                    if (player.PlayerId == playerId)
-                        player.nameText.Color = new Color(colorR, colorG, colorB, colorA);
+            foreach (var player in PlayerControl.AllPlayerControls)
+                if (player.PlayerId == playerId)
+                    player.cosmetics.nameText.color = new Color(colorR, colorG, colorB, colorA);
+        }
 
-                return false;
-            }
+        private static void HandleSetPlayerSoulStone(MessageReader reader)
+        {
+            byte playerId = reader.ReadByte();
+            GlobalVariable.PlayerSoulStone = PlayerControlUtils.FromPlayerId(playerId);
+        }
 
-            if (callId == (byte) CustomRPC.SetPlayerSoulStone) {
-                byte playerId = reader.ReadByte();
-                GlobalVariable.PlayerSoulStone = PlayerControlUtils.FromPlayerId(playerId);
-                return false;
-            }
+        private static void HandleRemovePlayerSoulStone()
+        {
+            GlobalVariable.PlayerSoulStone = null;
+        }
 
-            if (callId == (byte) CustomRPC.RemovePlayerSoulStone) {
-                GlobalVariable.PlayerSoulStone = null;
-                return false;
-            }
+        private static void HandleSetThanos(MessageReader reader)
+        {
+            GlobalVariable.allThanos.Clear();
+            List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
+            selectedPlayers.ForEach(id => GlobalVariable.allThanos.Add(PlayerControlUtils.FromPlayerId(id)));
+        }
 
-            if (callId == (byte) CustomRPC.SetThanos) {
-                GlobalVariable.allThanos.Clear();
-                List<byte> selectedPlayers = reader.ReadBytesAndSize().ToList();
+        private static void HandleStonePickup(MessageReader reader)
+        {
+            string nameStone = reader.ReadString();
 
-                for (int i = 0; i < selectedPlayers.Count; i++)
-                    GlobalVariable.allThanos.Add(PlayerControlUtils.FromPlayerId(selectedPlayers[i]));
+            if (GlobalVariable.stoneObjects.ContainsKey(nameStone))
+                GlobalVariable.stoneObjects[nameStone].DestroyThisObject();
 
-                return false;
-            }
+            if (nameStone == "Soul")
+                Object.DestroyImmediate(GlobalVariable.arrow);
+        }
 
-            if (callId == (byte) CustomRPC.StonePickup) {
-                string nameStone = reader.ReadString();
+        private static void HandleMindChangedValue(MessageReader reader)
+        {
+            GlobalVariable.mindStoneUsed = reader.ReadBoolean();
+        }
 
-                if (GlobalVariable.stoneObjects.ContainsKey(nameStone))
-                    GlobalVariable.stoneObjects[nameStone].DestroyThisObject();
+        private static void HandleTimeRewind()
+        {
+            Stone.System.Time.isRewinding = true;
+            GlobalVariable.UsableButton = false;
+            PlayerControl.LocalPlayer.moveable = false;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
+            DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
+        }
 
-                if (nameStone == "Soul")
-                    Object.DestroyImmediate(GlobalVariable.arrow);
+        private static void HandleTimeRevive(MessageReader reader)
+        {
+            PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+            player.Revive();
+            var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
+            if (body != null) Object.Destroy(body.gameObject);
+        }
 
-                return false;
-            }
+        private static void HandlePowerStone(MessageReader reader)
+        {
+            PlayerControl murder = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+            HelperSprite.ShowAnimation(1, 24, true, "ModsThanos.Resources.anim-power.png", 10, 1,
+                murder.gameObject.transform.position, 5);
+            Vector2 murderPosition = reader.ReadVector2();
+            PlayerControlUtils.KillPlayerArea(murderPosition, murder, 3f);
+        }
 
-            if (callId == (byte) CustomRPC.MindChangedValue) {
-                GlobalVariable.mindStoneUsed = reader.ReadBoolean();
-                return false;
-            }
+        private static void HandleTurnInvisibility(MessageReader reader, PlayerControl __instance)
+        {
+            bool isInvis = reader.ReadBoolean();
+            byte playerId = reader.ReadByte();
+            PlayerControl player = PlayerControlUtils.FromPlayerId(playerId);
 
-            if (callId == (byte) CustomRPC.TimeRewind) {
-                Stone.System.Time.isRewinding = true;
-                GlobalVariable.UsableButton = false;
-                PlayerControl.LocalPlayer.moveable = false;
-                HudManager.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
-                HudManager.Instance.FullScreen.enabled = true;
-                return false;
-            }
+            HelperSprite.ShowAnimation(1, 8, true, "ModsThanos.Resources.anim-reality.png", 48, 1,
+                player.gameObject.transform.position, 1);
 
-            if (callId == (byte) CustomRPC.TimeRevive) {
-                PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
-                player.Revive();
-                var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
+            GlobalVariable.realityStoneUsed = isInvis;
+            Stone.System.RpcFunctions.TurnInvis(isInvis, __instance);
+        }
 
-                if (body != null) Object.Destroy(body.gameObject);
-                return false;
-            }
+        private static void HandleSnap()
+        {
+            GlobalVariable.useSnap = true;
+            Camera.main.GetComponent<FollowerCamera>().shakeAmount = 0.2f;
+            Camera.main.GetComponent<FollowerCamera>().shakePeriod = 1200f;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
+        }
 
-            if (callId == (byte) CustomRPC.PowerStone) {
-                PlayerControl murder = PlayerControlUtils.FromPlayerId(reader.ReadByte());
-                HelperSprite.ShowAnimation(1, 24, true, "ModsThanos.Resources.anim-power.png", 10, 1, murder.gameObject.transform.position, 5);
-                Vector2 murderPosition = reader.ReadVector2();
+        private static void HandleSnapEnded(MessageReader reader)
+        {
+            GlobalVariable.useSnap = false;
+            Camera.main.GetComponent<FollowerCamera>().shakeAmount = 0f;
+            Camera.main.GetComponent<FollowerCamera>().shakePeriod = 0f;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = false;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
 
-                PlayerControlUtils.KillPlayerArea(murderPosition, murder, 3f);
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.TurnInvisibility) {
-                bool isInvis = reader.ReadBoolean();
-                byte playerId = reader.ReadByte();
-
-                PlayerControl player = PlayerControlUtils.FromPlayerId(playerId);
-                HelperSprite.ShowAnimation(1, 8, true, "ModsThanos.Resources.anim-reality.png", 48, 1, player.gameObject.transform.position, 1);
-
-                GlobalVariable.realityStoneUsed = isInvis;
-                Stone.System.RpcFunctions.TurnInvis(isInvis, __instance);
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.Snap) {
-                GlobalVariable.useSnap = true;
-                Camera.main.GetComponent<KGIKNCBGPFJ>().shakeAmount = 0.2f;
-                Camera.main.GetComponent<KGIKNCBGPFJ>().shakePeriod = 1200f;
-                HudManager.Instance.FullScreen.enabled = true;
-                HudManager.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
-
-                return false;
-            }
-
-            if (callId == (byte) CustomRPC.SnapEnded) {
-                GlobalVariable.useSnap = false;
-                Camera.main.GetComponent<KGIKNCBGPFJ>().shakeAmount = 0f;
-                Camera.main.GetComponent<KGIKNCBGPFJ>().shakePeriod = 0f;
-                HudManager.Instance.FullScreen.enabled = false;
-                HudManager.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
-
-                PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
-                PlayerControlUtils.KillEveryone(player);
-
-                return false;
-            }
-
-            return true;
+            PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
+            PlayerControlUtils.KillEveryone(player);
         }
     }
 }

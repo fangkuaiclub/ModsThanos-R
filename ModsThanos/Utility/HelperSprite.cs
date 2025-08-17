@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnhollowerBaseLib;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using UnityEngine;
 
 namespace ModsThanos.Utility {

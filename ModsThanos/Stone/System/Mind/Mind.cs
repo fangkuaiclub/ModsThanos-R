@@ -9,11 +9,11 @@ namespace ModsThanos.Stone.System.Mind {
         public static void OnMindPressed() {
             HelperSprite.ShowAnimation(1, 15, true, "ModsThanos.Resources.anim-mind.png", 48, 1, PlayerControl.LocalPlayer.gameObject.transform.position, 1);
 
-            GlobalVariable.PlayerHat = PlayerControl.LocalPlayer.Data.HatId;
-            GlobalVariable.PlayerPet = PlayerControl.LocalPlayer.Data.PetId;
-            GlobalVariable.PlayerSkin = PlayerControl.LocalPlayer.Data.SkinId;
-            GlobalVariable.PlayerColor = PlayerControl.LocalPlayer.Data.ColorId;
-            GlobalVariable.PlayerColorName = PlayerControl.LocalPlayer.nameText.Color;
+            GlobalVariable.PlayerHat = PlayerControl.LocalPlayer.Data.DefaultOutfit.HatId;
+            GlobalVariable.PlayerPet = PlayerControl.LocalPlayer.Data.DefaultOutfit.PetId;
+            GlobalVariable.PlayerSkin = PlayerControl.LocalPlayer.Data.DefaultOutfit.SkinId;
+            GlobalVariable.PlayerColor = PlayerControl.LocalPlayer.Data.DefaultOutfit.ColorId;
+            GlobalVariable.PlayerColorName = PlayerControl.LocalPlayer.cosmetics.nameText.color;
             GlobalVariable.PlayerName = PlayerControl.LocalPlayer.Data.PlayerName;
             GlobalVariable.mindStoneUsed = true;
 
@@ -33,12 +33,13 @@ namespace ModsThanos.Stone.System.Mind {
             write.Write(true);
             AmongUsClient.Instance.FinishRpcImmediately(write);
 
-            player.RpcSetHat(target.Data.HatId);
-            player.RpcSetSkin(target.Data.SkinId);
-            player.RpcSetPet(target.Data.PetId);
-            player.RpcSetColor(target.Data.ColorId);
+            player.RpcSetHat(target.Data.DefaultOutfit.HatId);
+            player.RpcSetSkin(target.Data.DefaultOutfit.SkinId);
+            player.RpcSetPet(target.Data.DefaultOutfit.PetId);
+            player.RpcSetColor((byte)target.Data.DefaultOutfit.ColorId);
             player.RpcSetName(target.Data.PlayerName);
-            PlayerControlUtils.RpcSetColorName(target.nameText.Color, player.PlayerId);        }
+            PlayerControlUtils.RpcSetColorName(target.cosmetics.nameText.color, player.PlayerId);
+        }
 
         public static void OnMindEnded(bool wihoutAnimation = false) {
             if (!wihoutAnimation) HelperSprite.ShowAnimation(1, 15, true, "ModsThanos.Resources.anim-mind.png", 48, 1, PlayerControl.LocalPlayer.gameObject.transform.position, 1);
@@ -53,7 +54,7 @@ namespace ModsThanos.Stone.System.Mind {
             player.RpcSetHat(GlobalVariable.PlayerHat);
             player.RpcSetSkin(GlobalVariable.PlayerSkin);
             player.RpcSetPet(GlobalVariable.PlayerPet);
-            player.RpcSetColor(GlobalVariable.PlayerColor);
+            player.RpcSetColor((byte)GlobalVariable.PlayerColor);
         }
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 using ModsThanos.Utility;
 using Hazel;
-using Reactor;
+using Reactor.Utilities.Attributes;
 
 namespace ModsThanos {
 

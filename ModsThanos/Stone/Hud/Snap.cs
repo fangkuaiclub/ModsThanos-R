@@ -10,6 +10,7 @@ namespace ModsThanos {
             GlobalVariable.buttonSnap = new CooldownButton
                 (() => OnClick(),
                 15f,
+                "Snap",
                 "ModsThanos.Resources.snap.png",
                 450f,
                 new Vector2(0.5f,3f),
@@ -30,7 +31,7 @@ namespace ModsThanos {
         }
 
         private static void OnUpdate(CooldownButton button) {
-            if (!GlobalVariable.UsableButton || CustomGameOptions.DisableSnap.GetValue()) {
+            if (!GlobalVariable.UsableButton || CustomGameOptions.DisableSnap.Get()) {
                 button.SetCanUse(false);
             } else {
                 if (GlobalVariable.hasMindStone && GlobalVariable.hasSpaceStone && GlobalVariable.hasPowerStone && GlobalVariable.hasTimeStone && GlobalVariable.hasSoulStone && GlobalVariable.hasRealityStone)

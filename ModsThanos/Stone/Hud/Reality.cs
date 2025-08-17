@@ -10,13 +10,14 @@ namespace ModsThanos {
         public static void Postfix(HudManager __instance) {
             GlobalVariable.buttonReality = new CooldownButton
                 (() => onClick(),
-                CustomGameOptions.CooldownRealityStone.GetValue(),
+                CustomGameOptions.CooldownRealityStone.Get(),
+                "Reality",
                 "ModsThanos.Resources.reality.png",
                 300f,
                 new Vector2(1f, 0f),
                 Visibility.OnlyImpostor,
                 __instance,
-                CustomGameOptions.RealityDuration.GetValue(),
+                CustomGameOptions.RealityDuration.Get(),
                 () => OnEffectEnd(),
                 () => OnUpdate(GlobalVariable.buttonReality)
             );

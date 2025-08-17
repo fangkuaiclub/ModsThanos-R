@@ -11,8 +11,10 @@ namespace ModsThanos.Patch {
     [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.Start))]
     public static class ShipStatusPatch {
         public static void Prefix(ShipStatus __instance) {
+            if (AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay || GameOptionsManager.Instance.currentGameMode == AmongUs.GameOptions.GameModes.HideNSeek) return;
+
             Stone.System.Time.pointsInTime.Clear();
-            Stone.System.Time.recordTime = CustomGameOptions.TimeDuration.GetValue();
+            Stone.System.Time.recordTime = CustomGameOptions.TimeDuration.Get();
             GlobalVariable.hasMindStone = false;
             GlobalVariable.hasPowerStone = false;
             GlobalVariable.hasRealityStone = false;
@@ -30,24 +32,24 @@ namespace ModsThanos.Patch {
             foreach (var player in PlayerControl.AllPlayerControls) {
                 GlobalVariable.allPlayersData.Add(new Stone.System.Mind.PlayerData(
                     player.PlayerId,
-                    player.Data.ColorId,
-                    player.Data.HatId,
-                    player.Data.PetId,
-                    player.Data.SkinId,
-                    player.nameText.Text
+                    player.cosmetics.ColorId,
+                    player.cosmetics.hat.name,
+                    player.cosmetics.currentPet.name,
+                    player.cosmetics.skin.name,
+                    player.cosmetics.nameText.text
                 ));
             }
 
             // Button Timer
-            Stone.System.Time.recordTime = CustomGameOptions.TimeDuration.GetValue();
-            GlobalVariable.buttonMind.MaxTimer = CustomGameOptions.CooldownMindStone.GetValue();
-            GlobalVariable.buttonMind.EffectDuration = CustomGameOptions.MindDuration.GetValue();
-            GlobalVariable.buttonReality.MaxTimer = CustomGameOptions.CooldownRealityStone.GetValue();
-            GlobalVariable.buttonReality.EffectDuration = CustomGameOptions.RealityDuration.GetValue();
-            GlobalVariable.buttonTime.MaxTimer = CustomGameOptions.CooldownTimeStone.GetValue();
-            GlobalVariable.buttonTime.EffectDuration = CustomGameOptions.TimeDuration.GetValue() / 2;
-            GlobalVariable.buttonPower.MaxTimer = CustomGameOptions.CooldownPowerStone.GetValue();
-            GlobalVariable.buttonSpace.MaxTimer = CustomGameOptions.CooldownSpaceStone.GetValue();
+            Stone.System.Time.recordTime = CustomGameOptions.TimeDuration.Get();
+            GlobalVariable.buttonMind.MaxTimer = CustomGameOptions.CooldownMindStone.Get();
+            GlobalVariable.buttonMind.EffectDuration = CustomGameOptions.MindDuration.Get();
+            GlobalVariable.buttonReality.MaxTimer = CustomGameOptions.CooldownRealityStone.Get();
+            GlobalVariable.buttonReality.EffectDuration = CustomGameOptions.RealityDuration.Get();
+            GlobalVariable.buttonTime.MaxTimer = CustomGameOptions.CooldownTimeStone.Get();
+            GlobalVariable.buttonTime.EffectDuration = CustomGameOptions.TimeDuration.Get() / 2;
+            GlobalVariable.buttonPower.MaxTimer = CustomGameOptions.CooldownPowerStone.Get();
+            GlobalVariable.buttonSpace.MaxTimer = CustomGameOptions.CooldownSpaceStone.Get();
 
             Dictionary<string, Vector2> stonePosition = StonePlacement.SetAllStonePositions();
             StonePlacement.PlaceAllStone();

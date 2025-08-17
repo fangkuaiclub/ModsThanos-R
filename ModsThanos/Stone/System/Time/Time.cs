@@ -72,8 +72,8 @@ namespace ModsThanos.Stone.System {
         public static void StartRewind() {
             isRewinding = true;
             PlayerControl.LocalPlayer.moveable = false;
-            HudManager.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
-            HudManager.Instance.FullScreen.enabled = true;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
+            DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
             GlobalVariable.UsableButton = false;
             HelperSprite.ShowAnimation(1, 13, true, "ModsThanos.Resources.anim-time.png", 64, 1, PlayerControl.LocalPlayer.gameObject.transform.position, 5);
 
@@ -85,7 +85,7 @@ namespace ModsThanos.Stone.System {
             isRewinding = false;
             GlobalVariable.UsableButton = true;
             PlayerControl.LocalPlayer.moveable = true;
-            HudManager.Instance.FullScreen.enabled = false;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = false;
         }
     }
 }

@@ -21,10 +21,10 @@ namespace ModsThanos {
         public static bool hasRealityStone = false;
 
         // Player Data
-        public static byte PlayerColor;
-        public static uint PlayerHat;
-        public static uint PlayerPet;
-        public static uint PlayerSkin;
+        public static int PlayerColor;
+        public static string PlayerHat;
+        public static string PlayerPet;
+        public static string PlayerSkin;
         public static string PlayerName;
         public static Color PlayerColorName;
         public static List<PlayerData> allPlayersData = new List<PlayerData>();

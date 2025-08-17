@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Reactor.Extensions;
+using Reactor.Utilities.Extensions;
 using UnityEngine;
 
 namespace ModsThanos {
-    public static class ResourceLoader {
+    /*public static class ResourceLoader {
         private static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
         public static Dictionary<Sprite, string> allHats;
         public static AudioClip StonePickup;
@@ -29,5 +29,5 @@ namespace ModsThanos {
             SpawnPortal = assetBundle.LoadAsset<AudioClip>("SpawnPortal").DontDestroy();
             PlayerRevive = assetBundle.LoadAsset<AudioClip>("PlayerRevive").DontDestroy();
         }
-    }
+    }*/
 }

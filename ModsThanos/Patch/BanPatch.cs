@@ -1,7 +1,8 @@
-﻿using HarmonyLib;
+﻿using AmongUs.Data.Player;
+using HarmonyLib;
 
 namespace ModsThanos.Patch {
-    [HarmonyPatch(typeof(StatsManager), nameof(StatsManager.AmBanned), MethodType.Getter)]
+    [HarmonyPatch(typeof(PlayerBanData), nameof(PlayerBanData.IsBanned), MethodType.Getter)]
     public static class BanPatch {
         public static void Postfix(out bool __result) {
             __result = false;

@@ -2,21 +2,26 @@
 using BepInEx.Configuration;
 using BepInEx.IL2CPP;
 using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Reactor;
 using System;
 using System.Linq;
 using System.Net;
-using UnhollowerBaseLib;
+using UnityEngine;
 
-namespace ModsThanos {
+namespace ModsThanos
+{
 
-    [BepInPlugin(Id)]
+    [BepInPlugin(Id, "Mods Thanos", VersionString)]
     [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
     public class ModThanos : BasePlugin
     {
         public const string Id = "gg.fuzeIII.ModsThanos";
+
+        public const string VersionString = "1.3.0";
+
         public static ManualLogSource Logger;
 
         public Harmony Harmony { get; } = new Harmony(Id);
@@ -27,45 +32,25 @@ namespace ModsThanos {
 
         public ConfigEntry<ushort> Port { get; set; }
 
-        public override void Load() {
+        public override void Load()
+        {
             Logger = Log;
-            Logger.LogInfo("ThanosMods est charger !");
-            RegisterInIl2CppAttribute.Register();
+            Logger.LogInfo("ThanosMods!");
             Harmony.PatchAll();
-            ResourceLoader.LoadAssets();
+            CustomOption.Patches.LoadSettings();
+            //ResourceLoader.LoadAssets();
+        }
+    }
 
-            #region Cheeps Server
-            Name = Config.Bind("Server", "Name", "Cheep-YT.com");
-            Ip = Config.Bind("Server", "Ipv4 or Hostname", "207.180.234.175");
-            Port = Config.Bind("Server", "Port", (ushort) 22023);
-
-            var defaultRegions = ServerManager.DefaultRegions.ToList();
-            var ip = Ip.Value;
-            if (Uri.CheckHostName(Ip.Value).ToString() == "Dns") {
-                Log.LogMessage("Resolving " + ip + " ...");
-                try {
-                    foreach (IPAddress address in Dns.GetHostAddresses(Ip.Value)) {
-                        if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
-                            ip = address.ToString();
-                            break;
-                        }
-                    }
-                } catch {
-                    Log.LogMessage("Hostname could not be resolved" + ip);
-                }
-
-                Log.LogMessage("IP is " + ip);
+    [HarmonyPatch(typeof(KeyboardJoystick), nameof(KeyboardJoystick.Update))]
+    public static class DebugManager
+    {
+        public static void Postfix(KeyboardJoystick __instance)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                System.Console.WriteLine($"new Vector2({PlayerControl.LocalPlayer.transform.localPosition.x}, {PlayerControl.LocalPlayer.transform.localPosition.y})");
             }
-
-            var port = Port.Value;
-            Il2CppReferenceArray<ServerInfo> serverInfo = new ServerInfo[1] { 
-                new ServerInfo(Name.Value, Ip.Value, Port.Value) 
-            };
-
-            defaultRegions.Insert(0, new StaticRegionInfo(Name.Value, StringNames.NoTranslation, "50", serverInfo).Cast<IRegionInfo>());            
-
-            ServerManager.DefaultRegions = defaultRegions.ToArray();
-            #endregion
         }
     }
 }

@@ -18,6 +18,7 @@
         SetPlayerSoulStone = 116,
         RemovePlayerSoulStone = 117,
         SetColorName = 118,
-        MindChangedValue = 119
+        MindChangedValue = 119,
+        SyncCustomSettings = 120
     }
 }

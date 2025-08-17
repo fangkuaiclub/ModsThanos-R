@@ -7,7 +7,7 @@ namespace ModsThanos.Stone.Map {
             if (!GlobalVariable.stoneObjects.ContainsKey("Power")) {
 
                 ModThanos.Logger.LogInfo(CustomGameOptions.VisibilityPower.ToString());
-                new ComponentMap(position, "ModsThanos.Resources.power.png", "Power", CustomGameOptions.VisibilityStringToEnum(CustomGameOptions.VisibilityPower.GetText()));
+                new ComponentMap(position, "ModsThanos.Resources.power.png", "Power", CustomGameOptions.VisibilityStringToEnum(CustomGameOptions.VisibilityPower.Get()));
             }
         }
     }

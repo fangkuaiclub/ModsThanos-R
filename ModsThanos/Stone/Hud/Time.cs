@@ -9,13 +9,14 @@ namespace ModsThanos {
         public static void Postfix(HudManager __instance) {
             GlobalVariable.buttonTime = new CooldownButton
                 (() => OnClick(),
-                CustomGameOptions.CooldownTimeStone.GetValue(),
+                CustomGameOptions.CooldownTimeStone.Get(),
+                "Time",
                 "ModsThanos.Resources.time.png",
                 300f,
                 new Vector2(0f, 2f),
                 Visibility.OnlyImpostor,
                 __instance,
-                CustomGameOptions.TimeDuration.GetValue(),
+                CustomGameOptions.TimeDuration.Get(),
                 () => OnEffectEnd(),
                 () => OnUpdate(GlobalVariable.buttonTime)
             );

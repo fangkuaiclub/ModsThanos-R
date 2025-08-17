@@ -70,22 +70,21 @@ namespace ModsThanos.Stone.System {
 
             SpawnVent(id, postion, leftVent, centerVent, rightVent);
 
-            var w = AmongUsClient.Instance.StartRpc(ShipStatus.Instance.NetId, (byte) CustomRPC.SpawnPortal, SendOption.Reliable);
+            var w = AmongUsClient.Instance.StartRpcImmediately(ShipStatus.Instance.NetId, (byte) CustomRPC.SpawnPortal, SendOption.Reliable);
 
             w.WritePacked(id);
             w.WriteVector2(postion);
             w.WritePacked(leftVent);
             w.WritePacked(centerVent);
             w.WritePacked(rightVent);
-            w.EndMessage();
+            AmongUsClient.Instance.FinishRpcImmediately(w);
 
         }
 
         [HarmonyPatch(typeof(ShipStatus), nameof(ShipStatus.HandleRpc))]
         static class ShipstatusHandleRpcPatch {
-            static bool Prefix(ShipStatus __instance, byte HKHMBLJFLMC, MessageReader ALMCIJKELCP) {
-                if (HKHMBLJFLMC == (byte) CustomRPC.SpawnPortal) {
-                    var reader = ALMCIJKELCP;
+            static bool Prefix(ShipStatus __instance, byte callId, MessageReader reader) {
+                if (callId == (byte) CustomRPC.SpawnPortal) {
                     var id = reader.ReadPackedInt32();
                     var postion = reader.ReadVector2();
                     var leftVent = reader.ReadPackedInt32();

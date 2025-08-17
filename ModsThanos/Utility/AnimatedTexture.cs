@@ -1,4 +1,4 @@
-﻿using Reactor;
+﻿using Reactor.Utilities.Attributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

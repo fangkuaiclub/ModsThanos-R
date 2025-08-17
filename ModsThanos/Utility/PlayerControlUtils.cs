@@ -37,11 +37,11 @@ namespace ModsThanos.Utility {
             var toSetColor = new Color(1, 1, 1, opacity);
             player.GetComponent<SpriteRenderer>().color = toSetColor;
 
-            player.HatRenderer.FrontLayer.color = toSetColor;
-            player.HatRenderer.BackLayer.color = toSetColor;
-            player.HatRenderer.color = toSetColor;
-            player.MyPhysics.Skin.layer.color = toSetColor;
-            player.nameText.Color = toSetColor;
+            player.cosmetics.hat.FrontLayer.color = toSetColor;
+            player.cosmetics.hat.BackLayer.color = toSetColor;
+            player.cosmetics.SetHatColor(toSetColor);
+            player.cosmetics.skin.layer.color = toSetColor;
+            player.cosmetics.nameText.color = toSetColor;
         }
 
         public void Telportation(Vector2 position, PlayerControl player) {
@@ -55,20 +55,20 @@ namespace ModsThanos.Utility {
 
                 float distance = Vector2.Distance(psotion, Position(player));
                 if (distance < size)
-                    player.MurderPlayer(player);
+                    player.MurderPlayer(player, MurderResultFlags.Succeeded);
             }
         }
 
         public static void RpcSetColorName(Color color, byte playerid) {
-            FromPlayerId(playerid).nameText.Color = new Color(color.r, color.g, color.b, color.a);
+            FromPlayerId(playerid).cosmetics.nameText.color = new Color(color.r, color.g, color.b, color.a);
 
-            MessageWriter write = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetColorName, SendOption.None);
+            MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SetColorName, SendOption.None);
             write.Write(playerid);
             write.Write(color.r);
             write.Write(color.g);
             write.Write(color.b);
             write.Write(color.a);
-            write.EndMessage();
+            AmongUsClient.Instance.FinishRpcImmediately(write);
         }
 
         public static void KillEveryone(PlayerControl murder) {
@@ -76,7 +76,7 @@ namespace ModsThanos.Utility {
                 if (player.PlayerId == murder.PlayerId)
                     continue;
 
-                player.MurderPlayer(player);
+                player.MurderPlayer(player, MurderResultFlags.Succeeded);
             }
         }
 

@@ -5,6 +5,8 @@ namespace ModsThanos.Patch {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.FixedUpdate))]
     class PlayerUpdatePatch {
         public static void Postfix(PlayerControl __instance) {
+            if (GameOptionsManager.Instance.currentGameMode == AmongUs.GameOptions.GameModes.HideNSeek) return;
+            
             if (GlobalVariable.useSnap)
                 Stone.System.Snap.Incremente();
 

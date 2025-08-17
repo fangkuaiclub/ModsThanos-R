@@ -6,6 +6,8 @@ namespace ModsThanos.Patch {
     public static class EndGamePatch {
 
         public static void Prefix(AmongUsClient __instance) {
+            if (GameOptionsManager.Instance.currentGameMode == AmongUs.GameOptions.GameModes.HideNSeek) return;
+
             EndGameCommons.ResetGlobalVariable();
         }
     }
@@ -13,6 +15,8 @@ namespace ModsThanos.Patch {
     [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
     public static class EndGameManagerPatch {
         public static bool Prefix(EndGameManager __instance) {
+            if (GameOptionsManager.Instance.currentGameMode == AmongUs.GameOptions.GameModes.HideNSeek) return true;
+
             EndGameCommons.ResetGlobalVariable();
 
             return true;

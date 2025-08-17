@@ -9,7 +9,8 @@ namespace ModsThanos {
         public static void Postfix(HudManager __instance) {
             GlobalVariable.buttonSpace = new CooldownButton
                 (() => OnClick(),
-                CustomGameOptions.CooldownSpaceStone.GetValue(),
+                CustomGameOptions.CooldownSpaceStone.Get(),
+                "Space",
                 "ModsThanos.Resources.space.png",
                 300f,
                 new Vector2(0f, 1f),

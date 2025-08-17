@@ -1,13 +1,13 @@
 ﻿namespace ModsThanos.Stone.System.Mind {
     public class PlayerData {
         public byte PlayerId;
-        public byte PlayerColor;
-        public uint PlayerHat;
-        public uint PlayerPet;
-        public uint PlayerSkin;
+        public int PlayerColor;
+        public string PlayerHat;
+        public string PlayerPet;
+        public string PlayerSkin;
         public string PlayerName;
 
-        public PlayerData(byte playerId, byte playerColor, uint playerHat, uint playerPet, uint playerSkin, string playerName) {
+        public PlayerData(byte playerId, int playerColor, string playerHat, string playerPet, string playerSkin, string playerName) {
             PlayerId = playerId;
             PlayerColor = playerColor;
             PlayerHat = playerHat;

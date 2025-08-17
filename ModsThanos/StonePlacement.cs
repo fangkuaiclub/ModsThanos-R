@@ -6,7 +6,7 @@ using ModsThanos.Utility.Enumerations;
 namespace ModsThanos.Map {
     public class StonePlacement {
         internal static Vector2 GetRandomLocation(string composent) {
-            byte MapID = (byte) ShipStatus.Instance.Type;
+            byte MapID = GameOptionsManager.Instance.currentNormalGameOptions.MapId;
 
             Dictionary<MapType, Vector2[]> mapLocations = new Dictionary<MapType, Vector2[]>();
             Vector2 currentPositon;
@@ -79,6 +79,56 @@ namespace ModsThanos.Map {
                 new Vector2(-5.780f, -2.037f),
                 new Vector2(16.752f, -1.455f),
                 new Vector2(10.161f, 5.162f)
+            });
+
+            mapLocations.Add(MapType.Airship, new Vector2[] {
+                new Vector2(-22.642f, 0.820f),
+                new Vector2(-13.074f, -5.146f),
+                new Vector2(-12.302f, 3.273f),
+                new Vector2(-13.344f, -7.588f),
+                new Vector2(-16.793f, -12.845f),
+                new Vector2(10.594f, -14.732f),
+                new Vector2(17.413f, -4.067f),
+                new Vector2(35.906f, -3.038f),
+                new Vector2(32.374f, 7.335f),
+                new Vector2(21.236f, 12.213f),
+                new Vector2(13.918f, 6.277f),
+                new Vector2(-11.523f, 10.934f),
+                new Vector2(-3.683f, 1.307f),
+                new Vector2(6.495f, 14.094f),
+                new Vector2(-5.720f, -8.783f),
+                new Vector2(1.595f, -12.322f),
+                new Vector2(-2.306f, 1.375f),
+                new Vector2(5.633f, 3.567f),
+                new Vector2(9.869f, 3.694f),
+                new Vector2(12.012f, 2.922f),
+                new Vector2(14.695f, 2.995f),
+                new Vector2(20.673f, 2.658f)
+            });
+
+            mapLocations.Add(MapType.Fungle, new Vector2[] {
+                new Vector2(-14.123f, 7.488f),
+                new Vector2(-11.515f, 12.118f),
+                new Vector2(-16.979f, 0.981f),
+                new Vector2(-17.081f, -1.974f),
+                new Vector2(-17.799f, -9.275f),
+                new Vector2(2.125f, -1.243f),
+                new Vector2(-5.174f, -9.659f),
+                new Vector2(4.791f, -5.325f),
+                new Vector2(8.195f, -9.661f),
+                new Vector2(8.830f, -11.405f),
+                new Vector2(8.296f, -15.493f),
+                new Vector2(20.408f, -11.596f),
+                new Vector2(21.669f, -6.103f),
+                new Vector2(23.891f, -7.819f),
+                new Vector2(9.908f, 1.042f),
+                new Vector2(9.455f, 4.623f),
+                new Vector2(13.748f, 10.369f),
+                new Vector2(22.890f, 2.296f),
+                new Vector2(24.414f, 14.683f),
+                new Vector2(20.106f, 14.458f),
+                new Vector2(2.352f, 4.035f),
+                new Vector2(-19.717f, -3.981f)
             });
 
             bool RerollPosition;

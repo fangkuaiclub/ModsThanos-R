@@ -9,13 +9,14 @@ namespace ModsThanos {
         public static void Postfix(HudManager __instance) {
             GlobalVariable.buttonMind = new CooldownButton
                 (() => OnClick(),
-                CustomGameOptions.CooldownMindStone.GetValue(),
+                CustomGameOptions.CooldownMindStone.Get(),
+                "Mind",
                 "ModsThanos.Resources.mind.png",
                 300f,
                 new Vector2(1f, 2f),
                 Visibility.OnlyImpostor,
                 __instance,
-                CustomGameOptions.CooldownMindStone.GetValue(),
+                CustomGameOptions.CooldownMindStone.Get(),
                 () => OnEffectEnd(),
                 () => OnUpdate(GlobalVariable.buttonMind)
             );
