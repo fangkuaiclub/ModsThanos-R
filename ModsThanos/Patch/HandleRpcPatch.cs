@@ -183,6 +183,10 @@ namespace ModsThanos.Patch
         {
             PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());
             player.Revive();
+            if (player.Data.Role.IsImpostor)
+                RoleManager.Instance.SetRole(player, AmongUs.GameOptions.RoleTypes.Impostor);
+            else
+                RoleManager.Instance.SetRole(player, AmongUs.GameOptions.RoleTypes.Crewmate);
             var body = Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == player.PlayerId);
             if (body != null) Object.Destroy(body.gameObject);
         }
