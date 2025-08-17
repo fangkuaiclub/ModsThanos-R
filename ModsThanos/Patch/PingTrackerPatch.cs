@@ -24,7 +24,8 @@ namespace ModsThanos.Patch {
                 __instance.text.alignment = TextAlignmentOptions.TopLeft;
                 position.DistanceFromEdge = new Vector3(0.5f, 0.11f);
             }
-                __instance.text.text = $"<size=130%><color=#BF00D6FF>Thanos Mods</color> v{ModThanos.VersionString}</size>\nModded by <color=#00ffff>FangkuaiYa</color>\n{__instance.text.text}";
+                __instance.text.text = $"<size=130%><color=#BF00D6FF>Thanos Mods</color> v{ModThanos.VersionString}</size>\n{ModTranslation.getString("pingTrackerModdedBy")} <color=#00ffff>FangkuaiYa</color>\n{__instance.text.text}";
+            //Mod also by Hardel, but this mod is very old, most code changed, so I have not write him in PingTracker
         }
     }
 }

@@ -36,6 +36,8 @@ namespace ModsThanos.CustomOption
         protected internal CustomOptionType Type { get; set; }
         public object DefaultValue { get; set; }
 
+        internal static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
+
         public override string ToString()
         {
             return Format(Value);

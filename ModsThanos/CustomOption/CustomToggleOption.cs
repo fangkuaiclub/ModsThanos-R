@@ -6,7 +6,7 @@ namespace ModsThanos.CustomOption
             CustomOptionType.Toggle,
             value)
         {
-            Format = val => (bool)val ? "On" : "Off";
+            Format = val => (bool)val ? Utility.Utils.ColorString(Palette.EnabledColor, "optionOn") : Utility.Utils.ColorString(Palette.DisabledGrey, "optionOff");
         }
 
         protected internal bool Get()

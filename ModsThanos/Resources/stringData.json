@@ -1,0 +1,182 @@
+{
+    "modSettingsText": {
+        "0": "Mod Settings",
+        "13": "\u6a21\u7ec4\u8bbe\u7f6e"
+    },
+    "roleNameThanos": {
+        "0": "Thanos",
+        "13": "\u706d\u9738"
+    },
+    "introTextThanos": {
+        "0": "Find the stones, and challenge the crewmates.",
+        "13": "\u627e\u5230\u5b9d\u77f3\u5e76\u9762\u5bf9\u8239\u5458\u7684\u6311\u6218."
+    },
+    "introTextCrewmates": {
+        "0": "Find Thanos and complete tasks.",
+        "13": "\u627e\u51fa\u706d\u9738\u5e76\u5b8c\u6210\u4efb\u52a1."
+    },
+    "pingTrackerModdedBy": {
+        "0": "Modded by",
+        "13": "\u6a21\u7ec4\u4f5c\u8005\uff1a"
+    },
+    "importantText": {
+        "0": "<color=#ffffff>Objective: Find the stones to get the snap.\n\n<color=#808080FF>Snap:</color> Ends the game.\n<color=#008516FF>Time Stone:</color> Allows you to go back in time.\n<color=#822FA8FF>Power Stone:</color> Allows killing in an area.\n<color=#C46f1AFF>Soul Stone:</color> Crewmates can pick it up.\n<color=#A6A02EFF>Mind Stone:</color> Allows you to transform into someone.\n<color=#3482BAFF>Space Stone</color>: Places portals.\n<color=#D43D3DFF>Reality Stone</color>: Allows you to become invisible\n</color>\n",
+        "13": "<color=#ffffff>\u76ee\u6807\uff1a\u627e\u5230\u5b9d\u77f3\u6765\u6253\u54cd\u54cd\u6307\n\n<color=#808080FF>\u54cd\u6307\uff1a</color>\u7ed3\u675f\u6e38\u620f\u3002\n<color=#C46f1AFF>\u7075\u9b42\u5b9d\u77f3\uff1a</color>\u8239\u5458\u53ef\u62fe\u53d6\u7684\u552f\u4e00\u5b9d\u77f3\uff0c\u8239\u5458\u62fe\u53d6\u540e\u540d\u5b57\u53d8\u6210\u6a59\u8272\n<color=#008516FF>\u65f6\u95f4\u5b9d\u77f3\uff1a</color>\u53ef\u4ee5\u4f7f\u65f6\u95f4\u5012\u9000\n<color=#D43D3DFF>\u73b0\u5b9e\u5b9d\u77f3\uff1a</color>\u53ef\u4ee5\u9690\u8eab\n<color=#3482BAFF>\u7a7a\u95f4\u5b9d\u77f3\uff1a</color>\u53ef\u4ee5\u521b\u5efa\u7ba1\u9053\n<color=#A6A02EFF>\u73b0\u5b9e\u5b9d\u77f3\uff1a</color>\u53ef\u4ee5\u968f\u673a\u8f6c\u6362\u6210\u5176\u4ed6\u8239\u5458\n<color=#822FA8FF>\u529b\u91cf\u5b9d\u77f3\uff1a</color>\u53ef\u4ee5\u8fdb\u884c\u8303\u56f4\u4f24\u5bb3\n</color>\n"
+    },
+    "buttonTextMind": {
+        "0": "Mind",
+        "13": "\u7cbe\u795e\u5b9d\u77f3"
+    },
+    "buttonTextPower": {
+        "0": "Power",
+        "13": "\u529b\u91cf\u5b9d\u77f3"
+    },
+    "buttonTextReality": {
+        "0": "Reality",
+        "13": "\u73b0\u5b9e\u5b9d\u77f3"
+    },
+    "buttonTextSnap": {
+        "0": "Snap",
+        "13": "\u54cd\u6307"
+    },
+    "buttonTextSoul": {
+        "0": "Soul",
+        "13": "\u7075\u9b42\u5b9d\u77f3"
+    },
+    "buttonTextSpace": {
+        "0": "Space",
+        "13": "\u7a7a\u95f4\u5b9d\u77f3"
+    },
+    "buttonTextTime": {
+        "0": "Time",
+        "13": "\u65f6\u95f4\u5b9d\u77f3"
+    },
+    "visibilityValue1": {
+        "0": "Everyone",
+        "13": "\u6240\u6709\u4eba"
+    },
+    "visibilityValue2": {
+        "0": "Thanos",
+        "13": "\u706d\u9738"
+    },
+    "visibilityValue3": {
+        "0": "Crewmate",
+        "13": "\u8239\u5458"
+    },
+    "ModHeader": {
+        "0": "Thanos Mod Settings",
+        "13": "\u706d\u9738\u6a21\u5f0f\u8bbe\u7f6e"
+    },
+    "EnableThanosMods": {
+        "0": "Enable Thanos Mod",
+        "13": "\u542f\u7528\u706d\u9738\u6a21\u5f0f"
+    },
+    "ThanosSide": {
+        "0": "Thanos Side",
+        "13": "\u706d\u9738\u9635\u8425"
+    },
+    "ThanosSide1": {
+        "0": "Impostor",
+        "13": "\u4f2a\u88c5\u8005"
+    },
+    "ThanosSide2": {
+        "0": "Crewmate",
+        "13": "\u8239\u5458"
+    },
+    "NumberThanos": {
+        "0": "Thanos Number",
+        "13": "\u706d\u9738\u6570\u91cf"
+    },
+    "DisableSnap": {
+        "0": "Disable Snap",
+        "13": "\u7981\u7528\u54cd\u6307"
+    },
+    "StoneHeader": {
+        "0": "Stone Settings",
+        "13": "\u5b9d\u77f3\u8bbe\u7f6e"
+    },
+    "CooldownTimeStone": {
+        "0": "Cooldown Time Stone",
+        "13": "\u65f6\u95f4\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "CooldownRealityStone": {
+        "0": "Cooldown Reality Stone",
+        "13": "\u73b0\u5b9e\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "CooldownSoulStone": {
+        "0": "Cooldown Soul Stone",
+        "13": "\u7075\u9b42\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "CooldownSpaceStone": {
+        "0": "Cooldown Space Stone",
+        "13": "\u7a7a\u95f4\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "CooldownMindStone": {
+        "0": "Cooldown Mind Stone",
+        "13": "\u7cbe\u795e\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "CooldownPowerStone": {
+        "0": "Cooldown Power Stone",
+        "13": "\u529b\u91cf\u5b9d\u77f3\u51b7\u5374\u65f6\u95f4"
+    },
+    "TimeDuration": {
+        "0": "Time Duration",
+        "13": "\u65f6\u95f4\u5b9d\u77f3\u6301\u7eed\u65f6\u957f"
+    },
+    "RealityDuration": {
+        "0": "Reality Duration",
+        "13": "\u73b0\u5b9e\u5b9d\u77f3\u6301\u7eed\u65f6\u957f"
+    },
+    "MindDuration": {
+        "0": "Mind Duration",
+        "13": "\u7cbe\u795e\u5b9d\u77f3\u6301\u7eed\u5e02\u573a"
+    },
+    "MaxPortal": {
+        "0": "Max Portal",
+        "13": "\u6700\u5927\u521b\u5efa\u4f20\u9001\u95e8\u6570\u91cf"
+    },
+    "StoneSize": {
+        "0": "Stone Size",
+        "13": "\u5b9d\u77f3\u5927\u5c0f"
+    },
+    "VisibilityHeader": {
+        "0": "Visibility Settings",
+        "13": "\u53ef\u89c1\u6027\u8bbe\u7f6e"
+    },
+    "VisibilityTime": {
+        "0": "Time Stone Visibility",
+        "13": "\u65f6\u95f4\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "VisibilityPower": {
+        "0": "Power Stone Visibility",
+        "13": "\u529b\u91cf\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "VisibilityMind": {
+        "0": "Mind Stone Visibility",
+        "13": "\u7cbe\u795e\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "VisibilitySoul": {
+        "0": "Soul Stone Visibility",
+        "13": "\u7075\u9b42\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "VisibilitySpace": {
+        "0": "Space Stone Visibility",
+        "13": "\u7a7a\u95f4\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "VisibilityReality": {
+        "0": "Reality Stone Visibility",
+        "13": "\u73b0\u5b9e\u5b9d\u77f3\u53ef\u89c1\u6027"
+    },
+    "optionOff": {
+        "0": "Off",
+        "13": "\u5173\u95ed"
+    },
+    "optionOn": {
+        "0": "On",
+        "13": "\u5f00\u542f"
+    },
+    "menuDescriptionText": {
+        "0": "Mod Settings for Thanos Mod.",
+        "13": "\u706d\u9738\u6a21\u5f0f\u7684\u4e3b\u8981\u8bbe\u7f6e\u3002"
+    }
+}

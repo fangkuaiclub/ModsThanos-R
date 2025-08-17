@@ -202,9 +202,9 @@ namespace ModsThanos.Patch
             RoleBehaviour role = PlayerControl.LocalPlayer.Data.Role;
             if (RoleHelper.IsThanos(PlayerControl.LocalPlayer.PlayerId))
             {
-                __instance.RoleText.text = "Thanos";
+                __instance.RoleText.text = ModTranslation.getString("roleNameThanos");
                 __instance.RoleText.color = new Color(0.749f, 0f, 0.839f, 1f);
-                __instance.RoleBlurbText.text = "Find the stones, and challenge the crewmates.";
+                __instance.RoleBlurbText.text = ModTranslation.getString("introTextThanos");
                 __instance.YouAreText.color = new Color(0.749f, 0f, 0.839f, 1f);
                 __instance.RoleBlurbText.color = new Color(0.749f, 0f, 0.839f, 1f);
             }
@@ -212,7 +212,7 @@ namespace ModsThanos.Patch
             {
                 __instance.RoleText.text = DestroyableSingleton<TranslationController>.Instance.GetString(role.StringName);
                 __instance.RoleText.color = role.TeamColor;
-                __instance.RoleBlurbText.text = "Find Thanos and complete tasks.";
+                __instance.RoleBlurbText.text = ModTranslation.getString("introTextCrewmates");
                 __instance.YouAreText.color = role.TeamColor;
                 __instance.RoleBlurbText.color = role.TeamColor;
             }

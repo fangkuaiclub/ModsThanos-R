@@ -41,7 +41,7 @@ namespace ModsThanos {
             pixelsPerUnit = PixelsPerUnit;
             this.sprite = HelperSprite.LoadSpriteFromEmbeddedResources(ResourceName, pixelsPerUnit);
             MaxTimer = Cooldown;
-            this.buttonText = buttonText;
+            this.buttonText = ModTranslation.getString("buttonText" + buttonText);
             Timer = MaxTimer;
             hasEffectDuration = true;
             isEffectActive = false;
@@ -60,7 +60,7 @@ namespace ModsThanos {
             this.sprite = HelperSprite.LoadSpriteFromEmbeddedResources(ResourceName, pixelsPerUnit);
             MaxTimer = Cooldown;
             Timer = MaxTimer;
-            this.buttonText = buttonText;
+            this.buttonText = ModTranslation.getString("buttonText" + buttonText);
             hasEffectDuration = false;
             buttons.Add(this);
             Start();

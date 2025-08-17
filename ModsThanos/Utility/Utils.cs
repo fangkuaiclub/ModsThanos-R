@@ -1,5 +1,5 @@
-﻿using Hazel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Hazel;
 using UnityEngine;
 
 namespace ModsThanos.Utility {
@@ -19,9 +19,21 @@ namespace ModsThanos.Utility {
 			float v2 = (float) reader.ReadUInt16() / 65535f;
 			return new Vector2(XRange.Lerp(v), YRange.Lerp(v2));
 		}
+
+        public static string ColorString(Color c, string s)
+        {
+            return string.Format("<color=#{0:X2}{1:X2}{2:X2}{3:X2}>{4}</color>", ToByte(c.r), ToByte(c.g), ToByte(c.b), ToByte(c.a), ModTranslation.getString(s));
+        }
+
+        private static byte ToByte(float f)
+        {
+            f = Mathf.Clamp01(f);
+            return (byte)(f * 255);
+        }
+
     }
 
-	public class FloatRange {
+    public class FloatRange {
 		public float Last {
 			get; private set;
 		}

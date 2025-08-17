@@ -45,7 +45,10 @@ namespace ModsThanos.Stone.System {
             goRender.gameObject.transform.position = new Vector3(postion.x, postion.y, 1f);
             goRender.gameObject.transform.parent = ventPref.transform.parent;
             renderer.sprite = HelperSprite.LoadSpriteFromEmbeddedResources("ModsThanos.Resources.portal.png", 300f);
-            vent.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            if (GameOptionsManager.Instance.currentNormalGameOptions.MapId == 5)
+                vent.transform.GetChild(3).GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+            else
+                vent.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
             vent.Id = id;
             vent.transform.position = postion;

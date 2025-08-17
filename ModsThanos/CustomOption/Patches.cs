@@ -218,12 +218,13 @@ namespace ModsThanos.CustomOption
                     button = GameObject.Instantiate(settingsButton, panel.transform);
                     button.transform.localPosition = modSettingsButtonLocal.Value;
                     button.name = "ModSettings";
-                    __instance.StartCoroutine(Effects.Lerp(1f, new Action<float>(p => { button.transform.FindChild("FontPlacer").GetComponentInChildren<TextMeshPro>().text = "Mod Settings"; })));
+                    __instance.StartCoroutine(Effects.Lerp(1f, new Action<float>(p => { button.transform.FindChild("FontPlacer").GetComponentInChildren<TextMeshPro>().text = ModTranslation.getString("modSettingsText"); })));
                     var passiveButton = button.GetComponent<PassiveButton>();
                     passiveButton.OnClick.RemoveAllListeners();
                     passiveButton.OnClick.AddListener((System.Action)(() =>
                     {
                         __instance.ChangeTab(3, false);
+                        __instance.MenuDescriptionText.text = ModTranslation.getString("menuDescriptionText");
                     }));
                     passiveButton.SelectButton(false);
                     Buttons.Add(passiveButton);
@@ -388,7 +389,7 @@ namespace ModsThanos.CustomOption
                     tab = GameObject.Instantiate(overview, overview.transform.parent);
                     tab.transform.localPosition = new Vector3(2.1f, 1.404f, 0f);
                     tab.name = "ModTab";
-                    __instance.StartCoroutine(Effects.Lerp(1f, new Action<float>(p => { tab.transform.FindChild("FontPlacer").GetComponentInChildren<TextMeshPro>().text = "Mod Settings"; })));
+                    __instance.StartCoroutine(Effects.Lerp(1f, new Action<float>(p => { tab.transform.FindChild("FontPlacer").GetComponentInChildren<TextMeshPro>().text = ModTranslation.getString("modSettingsText"); })));
                     var pTab = tab.GetComponent<PassiveButton>();
                     pTab.OnClick.RemoveAllListeners();
                     pTab.OnClick.AddListener((System.Action)(() => {
