@@ -177,6 +177,7 @@ namespace ModsThanos.Patch
             PlayerControl.LocalPlayer.moveable = false;
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
             DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.gameObject.SetActive(true);
         }
 
         private static void HandleTimeRevive(MessageReader reader)
@@ -219,6 +220,7 @@ namespace ModsThanos.Patch
             Camera.main.GetComponent<FollowerCamera>().shakeAmount = 0.2f;
             Camera.main.GetComponent<FollowerCamera>().shakePeriod = 1200f;
             DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.gameObject.SetActive(true);
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
         }
 
@@ -228,6 +230,7 @@ namespace ModsThanos.Patch
             Camera.main.GetComponent<FollowerCamera>().shakeAmount = 0f;
             Camera.main.GetComponent<FollowerCamera>().shakePeriod = 0f;
             DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = false;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.gameObject.SetActive(false);
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(1f, 1f, 1f, 0f);
 
             PlayerControl player = PlayerControlUtils.FromPlayerId(reader.ReadByte());

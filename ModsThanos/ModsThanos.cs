@@ -20,6 +20,8 @@ namespace ModsThanos
 
         public static ManualLogSource Logger;
 
+        public static ModThanos Instance;
+
         public Harmony Harmony { get; } = new Harmony(Id);
 
         public ConfigEntry<string> Name { get; set; }
@@ -30,11 +32,11 @@ namespace ModsThanos
 
         public override void Load()
         {
+            Instance = this;
             Logger = Log;
             ModTranslation.Load();
             Logger.LogInfo("ThanosMods!");
             Harmony.PatchAll();
-            CustomOption.Patches.LoadSettings();
             //ResourceLoader.LoadAssets();
         }
     }

@@ -2,7 +2,7 @@ namespace ModsThanos.CustomOption
 {
     public class CustomHeaderOption : CustomOption
     {
-        protected internal CustomHeaderOption(string name) : base(name, CustomOptionType.Header, 0)
+        protected internal CustomHeaderOption(int id, string name) : base(id, name, CustomOptionType.Header, 0)
         {
         }
 

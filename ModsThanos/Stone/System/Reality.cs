@@ -28,29 +28,34 @@ namespace ModsThanos.Stone.System {
                 ? (player == PlayerControl.LocalPlayer ? 0.5f : 0.0f)
                 : 1.0f;
 
-            if (player.cosmetics.currentBodySprite.BodySprite != null)
-                player.cosmetics.currentBodySprite.BodySprite.SetColorAlpha(alpha);
-
-            if (player.cosmetics.skin?.layer != null)
-                player.cosmetics.skin.layer.SetColorAlpha(alpha);
-
-            if (player.cosmetics.hat != null)
+            if (PlayerControl.LocalPlayer != player)
+                player.Visible = !isInvis;
+            else
             {
-                player.cosmetics.hat.FrontLayer.SetColorAlpha(alpha);
-                player.cosmetics.hat.BackLayer.SetColorAlpha(alpha);
+                if (player.cosmetics.currentBodySprite.BodySprite != null)
+                    player.cosmetics.currentBodySprite.BodySprite.SetColorAlpha(alpha);
+
+                if (player.cosmetics.skin?.layer != null)
+                    player.cosmetics.skin.layer.SetColorAlpha(alpha);
+
+                if (player.cosmetics.hat != null)
+                {
+                    player.cosmetics.hat.FrontLayer.SetColorAlpha(alpha);
+                    player.cosmetics.hat.BackLayer.SetColorAlpha(alpha);
+                }
+
+                if (player.cosmetics.currentPet != null)
+                    player.cosmetics.currentPet.SetAlpha(alpha);
+
+                if (player.cosmetics.visor != null)
+                    player.cosmetics.visor.Image.SetColorAlpha(alpha);
+
+                if (player.cosmetics.colorBlindText != null)
+                    player.cosmetics.colorBlindText.color.SetAlpha(alpha);
+
+                if (player.cosmetics.PettingHand != null)
+                    player.cosmetics.PettingHand.SetAlpha(alpha);
             }
-
-            if (player.cosmetics.currentPet != null)
-                player.cosmetics.currentPet.SetAlpha(alpha);
-
-            if (player.cosmetics.visor != null)
-                player.cosmetics.visor.Image.SetColorAlpha(alpha);
-
-            if (player.cosmetics.colorBlindText != null)
-                player.cosmetics.colorBlindText.color.SetAlpha(alpha);
-
-            if (player.cosmetics.PettingHand != null)
-                player.cosmetics.PettingHand.SetAlpha(alpha);
         }
 
         static public void SetColorAlpha(this SpriteRenderer renderer, float alpha)

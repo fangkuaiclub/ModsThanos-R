@@ -2,7 +2,7 @@ namespace ModsThanos.CustomOption
 {
     public class CustomToggleOption : CustomOption
     {
-        protected internal CustomToggleOption(string name, bool value = true) : base(name,
+        protected internal CustomToggleOption(int id, string name, bool value = true) : base(id, name,
             CustomOptionType.Toggle,
             value)
         {

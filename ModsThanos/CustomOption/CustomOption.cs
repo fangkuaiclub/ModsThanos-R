@@ -12,14 +12,13 @@ namespace ModsThanos.CustomOption
 
         public Func<object, string> Format;
         public string Name;
-        public int num = 1;
         
         public StringNames StringName;
 
-        protected internal CustomOption(string name, CustomOptionType type, object defaultValue,
+        protected internal CustomOption(int id, string name, CustomOptionType type, object defaultValue,
             Func<object, string> format = null)
         {
-            ID = num++;
+            ID = id;
             Name = name;
             Type = type;
             DefaultValue = Value = defaultValue;

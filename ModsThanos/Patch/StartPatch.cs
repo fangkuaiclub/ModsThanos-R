@@ -3,7 +3,6 @@ using Hazel;
 using ModsThanos.Map;
 using ModsThanos.Utility;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace ModsThanos.Patch {
@@ -50,13 +49,22 @@ namespace ModsThanos.Patch {
             GlobalVariable.buttonTime.EffectDuration = CustomGameOptions.TimeDuration.Get() / 2;
             GlobalVariable.buttonPower.MaxTimer = CustomGameOptions.CooldownPowerStone.Get();
             GlobalVariable.buttonSpace.MaxTimer = CustomGameOptions.CooldownSpaceStone.Get();
+        }
+    }
 
+    [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.CoBegin))]
+    public static class Strat2Patch
+    {
+        public static void Postfix(ShipStatus __instance)
+        {
             Dictionary<string, Vector2> stonePosition = StonePlacement.SetAllStonePositions();
             StonePlacement.PlaceAllStone();
 
-            if (PlayerControlUtils.AmHost()) {
-                foreach (var stone in stonePosition) {
-                    MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte) CustomRPC.SyncStone, SendOption.None, -1);
+            if (PlayerControlUtils.AmHost())
+            {
+                foreach (var stone in stonePosition)
+                {
+                    MessageWriter write = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.SyncStone, SendOption.None, -1);
                     write.Write(stone.Key);
                     write.WriteVector2(stone.Value);
                     AmongUsClient.Instance.FinishRpcImmediately(write);

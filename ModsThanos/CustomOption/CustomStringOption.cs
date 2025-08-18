@@ -2,7 +2,7 @@ namespace ModsThanos.CustomOption
 {
     public class CustomStringOption : CustomOption
     {
-        protected internal CustomStringOption(string name, string[] values, int startingId = 0) : base(name,
+        protected internal CustomStringOption(int id, string name, string[] values, int startingId = 0) : base(id, name,
             CustomOptionType.String,
             startingId)
         {

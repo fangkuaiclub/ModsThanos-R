@@ -79,6 +79,7 @@ namespace ModsThanos.Stone.System {
             PlayerControl.LocalPlayer.moveable = false;
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0f, 0.639f, 0.211f, 0.3f);
             DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = true;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.gameObject.SetActive(true);
             GlobalVariable.UsableButton = false;
             HelperSprite.ShowAnimation(1, 13, true, "ModsThanos.Resources.anim-time.png", 64, 1, PlayerControl.LocalPlayer.gameObject.transform.position, 5);
 
@@ -91,6 +92,7 @@ namespace ModsThanos.Stone.System {
             GlobalVariable.UsableButton = true;
             PlayerControl.LocalPlayer.moveable = true;
             DestroyableSingleton<HudManager>.Instance.FullScreen.enabled = false;
+            DestroyableSingleton<HudManager>.Instance.FullScreen.gameObject.SetActive(false);
         }
     }
 }

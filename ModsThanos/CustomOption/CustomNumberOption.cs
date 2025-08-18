@@ -5,8 +5,8 @@ namespace ModsThanos.CustomOption
 {
     public class CustomNumberOption : CustomOption
     {
-        protected internal CustomNumberOption(string name, float value, float min, float max, float increment,
-            Func<object, string> format = null) : base(name, CustomOptionType.Number, value, format)
+        protected internal CustomNumberOption(int id, string name, float value, float min, float max, float increment,
+            Func<object, string> format = null) : base(id, name, CustomOptionType.Number, value, format)
         {
             Min = min;
             Max = max;

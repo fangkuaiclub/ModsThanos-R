@@ -35,8 +35,8 @@ namespace ModsThanos.Stone.System.Mind {
 
             player.RpcSetHat(target.Data.DefaultOutfit.HatId);
             player.RpcSetSkin(target.Data.DefaultOutfit.SkinId);
-            player.RpcSetPet(target.Data.DefaultOutfit.PetId);
             player.RpcSetColor((byte)target.Data.DefaultOutfit.ColorId);
+            player.RpcSetPet(target.Data.DefaultOutfit.PetId);
             player.RpcSetName(target.Data.PlayerName);
             PlayerControlUtils.RpcSetColorName(target.cosmetics.nameText.color, player.PlayerId);
         }
