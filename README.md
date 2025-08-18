@@ -7,6 +7,7 @@ A random player, will be Thanos and will have to search for the 6 stones of infi
 # Releases :
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 16.1.0s | V1.3.0 | [Download](https://github.com/fangkuaiclub/ModsThanos-R/releases/download/V1.3.0/Among.Us.Mods.Thanos.zip) |
 | 2020.12.19s | V1.2 | [Download](https://github.com/Hardel-DW/ModsThanos/releases/download/V1.2.0/Among.Us.-.Thanos.zip) |
 | 2020.12.19s | V1.1 | [Download](https://github.com/Hardel-DW/ModsThanos/releases/download/V1.1/Among.Us.-.Mods.Thanos.zip) |
 | 2020.12.19s | V1.0c | [Download](https://github.com/Hardel-DW/ModsThanos/releases/download/V1.0c/Among.Us.-.Mods.Prod.zip) |
@@ -14,31 +15,10 @@ A random player, will be Thanos and will have to search for the 6 stones of infi
 <details><summary>Changelog</summary>
 <p>
 
-  # Version 1.2:  
-  ## Features:
-  * The tasks on the left menu for impostors are now visible.
-  * The "Games Options" are now visible to everyone.
-  * A new "Game Options", made are appearance allowing to deactivate the mod.
-  * The right and left arrows for the visibility "games options" are no longer limiting.
-  * The buttons are no longer usable during the voting phase.
-  * After the voting phase, the buttons are set to their maximum pause times.
-  * Impostors in the winds are not impacted by the winding effect.
-  * Addition of the discord server in the lobby, and not in part.
-  * Among us's LeaverBuster is deleted.
-  * A new spawn location for stones on Polus has spawned.
+  # Version 1.3.0:  
+  ## News:
+- Update to Among Us 16.1.0
 
-  ## Bug Fixes:
-  * On the map of Polus, stones could appear outside the limits of the game map.
-  * When going back in time, if the impostor was in a wind, he could move while being invisible.
-  * Sometimes the visibility "Game Options" does not work.
-  * The "Cooldown" of the first use of stones was not that of "Game Options".
-
-  ## Technical change :
-  * Reactor is now used as a dependency for inter-modal compatibility.
-  * Essentials-Reactor is now used as a dependency for inter-mod compatibility.
-  * 80% of the files have been modified for a better development comfort and performance optimization.
-  * Among Us pointer references are now almost all removed.
-  * Packet sending for "role management" is no longer sent in several packets but in one.
 </p>
 </details>
 
