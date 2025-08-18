@@ -49,6 +49,11 @@ namespace ModsThanos.Stone.System {
 
                     if (isDead && currentTimePoint.Unix < deadtime && PlayerControl.LocalPlayer.Data.IsDead) {
                         PlayerControl.LocalPlayer.Revive();
+                        if (PlayerControl.LocalPlayer.Data.Role.IsImpostor)
+                            RoleManager.Instance.SetRole(PlayerControl.LocalPlayer, AmongUs.GameOptions.RoleTypes.Impostor);
+                        else
+                            RoleManager.Instance.SetRole(PlayerControl.LocalPlayer, AmongUs.GameOptions.RoleTypes.Crewmate);
+
                         var body = UnityEngine.Object.FindObjectsOfType<DeadBody>().FirstOrDefault(b => b.ParentId == PlayerControl.LocalPlayer.PlayerId);
 
                         if (body != null)

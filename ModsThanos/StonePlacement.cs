@@ -118,7 +118,7 @@ namespace ModsThanos.Map {
                 new Vector2(8.195f, -9.661f),
                 new Vector2(8.830f, -11.405f),
                 new Vector2(8.296f, -15.493f),
-                new Vector2(20.408f, -11.596f),
+                new Vector2(18.87f, -12.42f),
                 new Vector2(21.669f, -6.103f),
                 new Vector2(23.891f, -7.819f),
                 new Vector2(9.908f, 1.042f),
